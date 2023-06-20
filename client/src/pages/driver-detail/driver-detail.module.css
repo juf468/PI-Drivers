@@ -1,0 +1,96 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.back_button {
+	width: 100px;
+	background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	font-size: 1.8rem;
+	margin-left: 5.5rem;
+	margin-top: 2rem;
+	padding: 0.25rem 0.5rem;
+	border-radius: 12px;
+	color: white;
+	border: 2px solid white;
+}
+
+.back_button:hover {
+	color: #18e1e4;
+	border: 2px solid #18e1e4;
+}
+
+.driver_detail_container {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	color: #fff;
+}
+
+.content {
+	width: 60%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.name_container {
+	display: flex;
+	align-items: center;
+}
+
+.h1name {
+	font-size: 50px;
+	margin-bottom: 10px;
+}
+
+.h1surname {
+	font-size: 50px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.info_container {
+	margin-top: 20px;
+}
+
+.p {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+.pDate {
+	font-size: 24px;
+	margin-bottom: 5px;
+}
+
+.pTeams {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+
+.description {
+	font-size: 20px;
+	margin-top: 20px;
+	text-align: left;
+}
+
+.img {
+	width: 600px;
+	height: 600px;
+	object-fit: cover;
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+	border: 4px solid #18e1e4;
+	margin-left: 40px;
+	margin-bottom: 1rem;
+}

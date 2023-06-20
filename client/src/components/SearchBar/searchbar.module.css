@@ -1,0 +1,43 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.searchbar {
+	cursor: pointer;
+	height: 2.5rem;
+	border-radius: 8px 0 0 8px;
+	padding: 8px 12px;
+	background-color: transparent;
+	color: white;
+	border: 2px solid white;
+}
+
+.searchbar:hover {
+	color: #18e1e4;
+	border: 2px solid #18e1e4;
+}
+
+.searchbar:focus {
+	outline: none;
+	border: 2px solid #18e1e4;
+}
+
+.button {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	height: 2.5rem;
+	border-radius: 0 8px 8px 0;
+	padding: 8px 12px;
+	background-color: transparent;
+	text-decoration: none;
+	color: white;
+	border: 2px solid white;
+	border-left-width: 0;
+}
+
+.button:hover {
+	color: #18e1e4;
+	border: 2px solid #18e1e4;
+}

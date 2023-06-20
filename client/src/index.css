@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	font-family: 'Roboto';
+}
+
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+.background {
+	background: linear-gradient(52deg, #001a73, #009175);
+	background-size: 200% 200%;
+
+	-webkit-animation: AnimationName 0s ease infinite;
+	-moz-animation: AnimationName 0s ease infinite;
+	-o-animation: AnimationName 0s ease infinite;
+	animation: AnimationName 0s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+	0% {
+		background-position: 40% 0%;
+	}
+	50% {
+		background-position: 61% 100%;
+	}
+	100% {
+		background-position: 40% 0%;
+	}
+}
+@-moz-keyframes AnimationName {
+	0% {
+		background-position: 40% 0%;
+	}
+	50% {
+		background-position: 61% 100%;
+	}
+	100% {
+		background-position: 40% 0%;
+	}
+}
+@-o-keyframes AnimationName {
+	0% {
+		background-position: 40% 0%;
+	}
+	50% {
+		background-position: 61% 100%;
+	}
+	100% {
+		background-position: 40% 0%;
+	}
+}
+@keyframes AnimationName {
+	0% {
+		background-position: 40% 0%;
+	}
+	50% {
+		background-position: 61% 100%;
+	}
+	100% {
+		background-position: 40% 0%;
+	}
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+a {
+	text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+	isolation: isolate;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	border-radius: 12px;
+	background: white;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #18e1e4;
+}
