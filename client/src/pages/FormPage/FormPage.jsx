@@ -86,7 +86,7 @@ const FormPage = () => {
 	return (
 		<div className={Style.div}>
 			<div style={{ width: '50%' }}>
-				<h1 className={Style.h1}>Crear Nuevo Driver</h1>
+				<h1 className={Style.h1}>Crea un conductor</h1>
 				<form onSubmit={handleSubmit}>
 					<label className={Style.label}>
 						Nombre:
@@ -169,7 +169,7 @@ const FormPage = () => {
 							onChange={handleEscuderiaChange}
 						>
 							<option value="DEFAULT" disabled>
-								Teams
+								Equipos
 							</option>
 							{teams.map((team, index) => (
 								<option key={index} value={team}>
@@ -190,7 +190,7 @@ const FormPage = () => {
 					{formErrors.team && <p className={Style.p}>{formErrors.team}</p>}
 
 					<button className={Style.button} type="submit">
-						Crear Driver
+						Crear conductor
 					</button>
 				</form>
 			</div>

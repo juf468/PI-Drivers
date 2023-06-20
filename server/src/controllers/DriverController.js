@@ -96,7 +96,7 @@ const postDriver = async (newDriver) => {
 					model: Team,
 					attributes: ['name'],
 					through: {
-						attributes: [], // Excluye los demás atributos
+						attributes: [],
 					},
 				},
 			],

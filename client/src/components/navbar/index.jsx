@@ -80,7 +80,7 @@ export const Navbar = () => {
 						defaultValue={'DEFAULT'}
 					>
 						<option value="DEFAULT" disabled>
-							Teams
+							Equipos
 						</option>
 						{teams.map((team, index) => (
 							<option key={index} value={team}>
@@ -115,7 +115,7 @@ export const Navbar = () => {
 							className={Styles.button}
 							onClick={() => handleFilterFromApi(false)}
 						>
-							Mis drivers
+							Conductores creados
 						</button>
 					</>
 				) : null}
