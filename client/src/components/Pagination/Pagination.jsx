@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Styles from './styles.module.css';
+import Style from './styles.module.css';
 import { changeCurrentPage } from '../../Redux/actions';
 
 export const Pagination = () => {
@@ -28,11 +28,11 @@ export const Pagination = () => {
 	}
 
 	return (
-		<nav className={Styles.pagination_container}>
-			<button className={Styles.navigation_buttons} onClick={onPreviusPage}>
+		<nav className={Style.pagination_container}>
+			<button className={Style.navigation_buttons} onClick={onPreviusPage}>
 				Anterior
 			</button>
-			<div className={Styles.pages_number}>
+			<div className={Style.pages_number}>
 				{pageNumbers.map((page) => {
 					if (page >= currentPage + 4 || page <= currentPage - 4) {
 						return null;
@@ -40,7 +40,7 @@ export const Pagination = () => {
 					return (
 						<button
 							key={page}
-							className={Styles.navigation_steps}
+							className={Style.navigation_steps}
 							style={{
 								color: currentPage === page && '#18e1e4',
 								borderColor: currentPage === page && '#18e1e4',
@@ -55,7 +55,7 @@ export const Pagination = () => {
 				})}
 			</div>
 			<button
-				className={Styles.navigation_buttons}
+				className={Style.navigation_buttons}
 				onClick={currentPage !== pageNumbers.length && onNextPage}
 			>
 				Siguiente

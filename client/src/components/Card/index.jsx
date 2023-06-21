@@ -20,7 +20,7 @@ export const Card = ({ id, image, name, surname, teams }) => {
 				/>
 				<Link className={Style.info_driver_container}>
 					<div className={Style.info_driver}>
-						<h1 style={{ marginRight: '1rem' }}>{name}</h1>
+						<h1 className={Style.h1Name}>{name}</h1>
 						<h1>{surname}</h1>
 					</div>
 					<h2>{teams?.replace(/,/g, ', ')}</h2>

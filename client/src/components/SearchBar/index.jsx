@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDriversByName } from '../../Redux/actions';
-import Styles from './searchbar.module.css';
+import Style from './searchbar.module.css';
 
 export const SearchBar = () => {
 	const dispatch = useDispatch();
@@ -22,16 +22,16 @@ export const SearchBar = () => {
 	};
 
 	return (
-		<div className={Styles.container}>
+		<div className={Style.container}>
 			<input
-				className={Styles.searchbar}
+				className={Style.searchbar}
 				type="search"
 				placeholder="Buscar conductor..."
 				value={input}
 				onChange={(event) => handleOnchange(event)}
 				onKeyDown={handleKeyDown}
 			/>
-			<button className={Styles.button} onClick={() => handleSearch()}>
+			<button className={Style.button} onClick={() => handleSearch()}>
 				Buscar
 			</button>
 		</div>

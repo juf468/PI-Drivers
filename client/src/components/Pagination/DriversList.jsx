@@ -1,7 +1,7 @@
 import { Pagination } from './Pagination';
 import { useSelector } from 'react-redux';
 import { Card } from '../Card';
-import Styles from './styles.module.css';
+import Style from './styles.module.css';
 
 const driversPerPage = 9;
 
@@ -15,8 +15,8 @@ export const DriversList = () => {
 	const firstIndex = lastIndex - driversPerPage;
 
 	return (
-		<div className={Styles.drivers_list_container}>
-			<div className={Styles.drivers_container}>
+		<div className={Style.drivers_list_container}>
+			<div className={Style.drivers_container}>
 				{totalDrivers ? (
 					drivers
 						.map((driver) => (

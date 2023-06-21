@@ -10,7 +10,7 @@ import {
 	sortByBirthDate,
 } from '../../Redux/actions';
 import { Link } from 'react-router-dom';
-import Styles from './navbar.module.css';
+import Style from './navbar.module.css';
 
 const useGetData = () => {
 	const dispatch = useDispatch();
@@ -58,10 +58,10 @@ export const Navbar = () => {
 	};
 
 	return (
-		<nav className={Styles.container}>
-			<section className={Styles.filter_container}>
+		<nav className={Style.container}>
+			<section className={Style.filter_container}>
 				<select
-					className={Styles.select}
+					className={Style.select}
 					onChange={handlerOrder}
 					name="Orden alfabetico"
 					defaultValue={'DEFAULT'}
@@ -74,7 +74,7 @@ export const Navbar = () => {
 				</select>
 				{!hasDateFilter && (
 					<select
-						className={Styles.select}
+						className={Style.select}
 						onChange={handlerFilter}
 						name="teams"
 						defaultValue={'DEFAULT'}
@@ -89,41 +89,35 @@ export const Navbar = () => {
 						))}
 					</select>
 				)}
-				<button className={Styles.button} onClick={() => handleSort('menor')}>
+				<button className={Style.button} onClick={() => handleSort('menor')}>
 					Menor a mayor
 				</button>
-				<button className={Styles.button} onClick={() => handleSort('mayor')}>
+				<button className={Style.button} onClick={() => handleSort('mayor')}>
 					Mayor a menor
 				</button>
-				<button className={Styles.button} onClick={() => handleCleanFilters()}>
+				<button className={Style.button} onClick={() => handleCleanFilters()}>
 					Limpiar filtros
 				</button>
 			</section>
 
-			<section className={Styles.searchbar_container}>
+			<section className={Style.searchbar_container}>
 				{!hasApiFilter ? (
 					<>
 						<button
-							className={Styles.button}
+							className={Style.button2}
 							onClick={() => handleFilterFromApi(true)}
-							style={{ margin: '0 8px' }}
 						>
 							Mostrar drivers de la API
 						</button>
 						<button
-							style={{ margin: '0 8px' }}
-							className={Styles.button}
+							className={Style.button2}
 							onClick={() => handleFilterFromApi(false)}
 						>
 							Conductores creados
 						</button>
 					</>
 				) : null}
-				<Link
-					to="/form-page"
-					className={Styles.button}
-					style={{ margin: '0 8px' }}
-				>
+				<Link to="/form-page" className={Style.button2}>
 					Crear conductor
 				</Link>
 				<SearchBar />

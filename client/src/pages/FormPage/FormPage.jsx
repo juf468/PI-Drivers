@@ -81,7 +81,7 @@ const FormPage = () => {
 
 	return (
 		<div className={Style.div}>
-			<div style={{ width: '50%' }}>
+			<div className={Style.div2}>
 				<h1 className={Style.h1}>Crea un conductor</h1>
 				<form onSubmit={handleSubmit}>
 					<label className={Style.label}>
@@ -146,8 +146,7 @@ const FormPage = () => {
 					<label className={Style.label}>
 						Descripción:
 						<textarea
-							className={Style.input}
-							style={{ height: '200px' }}
+							className={Style.textArea}
 							name="description"
 							value={formData.description}
 							onChange={handleChange}
@@ -156,31 +155,13 @@ const FormPage = () => {
 					</label>
 					<br />
 
-					<p style={{ width: '100%', marginBottom: '1rem' }}>Escuderías:</p>
-					<div
-						style={{
-							display: 'flex',
-							flexWrap: 'wrap',
-							height: '600px',
-							overflow: 'auto',
-							marginBottom: '2rem',
-						}}
-					>
+					<p className={Style.pEscuderias}>Escuderías:</p>
+					<div className={Style.divEscuderias}>
 						{teams.map((team) => (
-							<label
-								style={{
-									display: 'flex',
-									flexDirection: 'column',
-									alignItems: 'center',
-									width: '210px',
-									border: '1px solid white',
-									padding: '0.5rem',
-									textAlign: 'center',
-								}}
-							>
+							<label className={Style.labelEscuderias}>
 								{team}
 								<input
-									className={Style.input}
+									className={Style.checkedTeam}
 									type="radio"
 									onChange={() => {
 										setSelectedTeams((prev) => ({
@@ -189,7 +170,6 @@ const FormPage = () => {
 										}));
 									}}
 									checked={selectedTeams[team]}
-									style={{ width: '20px', height: '20px' }}
 								/>
 							</label>
 						))}

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getDriver } from '../../Redux/actions';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Styles from './driver-detail.module.css';
+import Style from './driver-detail.module.css';
 
 const useGetDriver = () => {
 	const { id } = useParams();
@@ -34,42 +34,35 @@ const DriverDetail = () => {
 	}
 
 	return (
-		<div className={Styles.container}>
-			<button onClick={handleBack} className={Styles.back_button}>
+		<div className={Style.container}>
+			<button onClick={handleBack} className={Style.back_button}>
 				Atras
 			</button>
-			<div className={Styles.driver_detail_container}>
-				<div className={Styles.content}>
-					<div className={Styles.name_container}>
-						<h1 className={Styles.h1name}>{driver.name}</h1>
-						<h1 className={Styles.h1surname}>{driver.surname}</h1>
+			<div className={Style.driver_detail_container}>
+				<div className={Style.content}>
+					<div className={Style.name_container}>
+						<h1 className={Style.h1name}>{driver.name}</h1>
+						<h1 className={Style.h1surname}>{driver.surname}</h1>
 					</div>
 
-					<div className={Styles.info_container}>
-						<p className={Styles.pDate}>{driver.date}</p>
-						<p className={Styles.pTeams}>{driver.teams}</p>
-						<p className={Styles.p}>{driver.nationality}</p>
+					<div className={Style.info_container}>
+						<p className={Style.pDate}>{driver.date}</p>
+						<p className={Style.pTeams}>{driver.teams}</p>
+						<p className={Style.p}>{driver.nationality}</p>
 					</div>
 
-					<p className={Styles.description}>{driver.description}</p>
+					<p className={Style.description}>{driver.description}</p>
 				</div>
 
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						justifyContent: 'center',
-					}}
-				>
+				<div className={Style.divId}>
 					<img
-						className={Styles.img}
+						className={Style.img}
 						src={imageError ?? driver.image}
 						alt="driver-image"
 						onError={handleImageError}
 					/>
-					<p style={{ fontSize: 24, marginLeft: '2rem' }}>
-						Driver ID: <span style={{ marginLeft: '1rem' }}>({driver.id})</span>
+					<p className={Style.pId}>
+						Driver ID: <span className={Style.spanId}>({driver.id})</span>
 					</p>
 				</div>
 			</div>

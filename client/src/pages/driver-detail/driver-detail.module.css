@@ -94,3 +94,17 @@
 	margin-left: 40px;
 	margin-bottom: 1rem;
 }
+.divId {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.pId {
+	font-size: 24px;
+	margin-left: 2rem;
+}
+
+.spanId {
+	margin-left: 1rem;
+}
