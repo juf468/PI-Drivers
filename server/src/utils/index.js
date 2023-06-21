@@ -66,7 +66,7 @@ const fetchDriversFromDB = async (name) => {
 				model: Team,
 				attributes: ['name'],
 				through: {
-					attributes: [], // Excluye los demás atributos
+					attributes: [],
 				},
 			},
 		],
