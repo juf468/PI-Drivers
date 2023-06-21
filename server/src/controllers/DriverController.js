@@ -81,13 +81,17 @@ const postDriver = async (newDriver) => {
 			date: newDriver.date,
 		});
 
-		const team = await Team.findOne({
-			where: { name: newDriver.team },
-		});
+		const teamsArray = newDriver.team.split(',');
 
-		if (team) {
-			await driver.setTeams(team);
-		}
+		teamsArray.forEach(async (t) => {
+			const team = await Team.findOne({
+				where: { name: t },
+			});
+
+			if (team) {
+				await driver.setTeams(team);
+			}
+		});
 
 		const driverWithTeam = await Driver.findOne({
 			where: { id: driver.id },
@@ -103,7 +107,6 @@ const postDriver = async (newDriver) => {
 		});
 
 		const teams = driverWithTeam.Teams.map((team) => team.name).join(', ');
-
 		return { ...driverWithTeam.dataValues, Teams: teams };
 	} catch (error) {
 		res.status(404).json({ error: error.message });

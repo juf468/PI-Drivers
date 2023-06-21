@@ -22,9 +22,7 @@ const DriverDetail = () => {
 	const [imageError, setImageError] = useState(null);
 
 	const handleImageError = () => {
-		setImageError(
-			'https://i0.wp.com/neonstation.com/wp-content/uploads/2020/10/FormulaOneF1NeonSignTurquoise.jpg'
-		);
+		setImageError('https://media.tenor.com/x3X71q4UOT8AAAAd/formula1-f1.gif');
 	};
 
 	const handleBack = useCallback(() => {

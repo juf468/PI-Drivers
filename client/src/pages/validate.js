@@ -30,9 +30,5 @@ export const validateForm = (formData) => {
 		errors.date = 'La fecha de nacimiento es obligatoria';
 	}
 
-	if (formData.team.length === 0) {
-		errors.team = 'Debes seleccionar al menos una escudería';
-	}
-
 	return errors;
 };

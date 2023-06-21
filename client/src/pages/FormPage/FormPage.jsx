@@ -34,6 +34,8 @@ const FormPage = () => {
 		team: '',
 	});
 
+	const [selectedTeams, setSelectedTeams] = useState({});
+
 	const [formErrors, setFormErrors] = useState({});
 
 	const handleChange = (event) => {
@@ -45,23 +47,17 @@ const FormPage = () => {
 		}));
 	};
 
-	const handleEscuderiaChange = (event) => {
-		const selectedEscuderias = Array.from(
-			event.target.selectedOptions,
-			(option) => option.value
-		);
-
-		setFormData((prevData) => ({
-			...prevData,
-			team: selectedEscuderias,
-		}));
-	};
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const errors = validateForm(formData);
 		setFormErrors(errors);
+
+		const formattedTeams = Object.values(selectedTeams).join(',');
+
+		if (formattedTeams.length >= 255) {
+			return Alert('Seleccionastes muchas escuderias');
+		}
 
 		if (Object.keys(errors).length === 0) {
 			try {
@@ -72,7 +68,7 @@ const FormPage = () => {
 					nationality: formData.nationality,
 					image: formData.image,
 					date: formData.date,
-					team: formData.team,
+					team: formattedTeams,
 				});
 				dispatch(getAllDrivers());
 				alert('Driver creado correctamente');
@@ -159,25 +155,45 @@ const FormPage = () => {
 						/>
 					</label>
 					<br />
-					<label className={Style.label}>
-						Escuderías:
-						<select
-							className={Style.select}
-							name="teams"
-							multiple
-							value={formData.teams}
-							onChange={handleEscuderiaChange}
-						>
-							<option value="DEFAULT" disabled>
-								Equipos
-							</option>
-							{teams.map((team, index) => (
-								<option key={index} value={team}>
-									{team}
-								</option>
-							))}
-						</select>
-					</label>
+
+					<p style={{ width: '100%', marginBottom: '1rem' }}>Escuderías:</p>
+					<div
+						style={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							height: '600px',
+							overflow: 'auto',
+							marginBottom: '2rem',
+						}}
+					>
+						{teams.map((team) => (
+							<label
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									width: '210px',
+									border: '1px solid white',
+									padding: '0.5rem',
+									textAlign: 'center',
+								}}
+							>
+								{team}
+								<input
+									className={Style.input}
+									type="radio"
+									onChange={() => {
+										setSelectedTeams((prev) => ({
+											...prev,
+											[team]: selectedTeams[team] ? undefined : team,
+										}));
+									}}
+									checked={selectedTeams[team]}
+									style={{ width: '20px', height: '20px' }}
+								/>
+							</label>
+						))}
+					</div>
 					{formErrors.name && <p className={Style.p}>{formErrors.name}</p>}
 					{formErrors.surname && (
 						<p className={Style.p}>{formErrors.surname}</p>
