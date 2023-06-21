@@ -31,9 +31,7 @@ export const DriversList = () => {
 						))
 						.slice(firstIndex, lastIndex)
 				) : (
-					<p style={{ fontSize: 24, margin: 'auto', color: 'white' }}>
-						No hay conductores
-					</p>
+					<p className={Style.pno}>No hay conductores</p>
 				)}
 			</div>
 			<Pagination />
