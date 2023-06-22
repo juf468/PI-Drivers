@@ -81,9 +81,9 @@
 }
 
 .p {
-	color: #ff0000;
+	color: orange;
 	font-size: 14px;
-	margin-top: 5px;
+	margin: 0.2rem 0;
 }
 
 .select {

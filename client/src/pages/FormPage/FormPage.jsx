@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_ROUTE, getAllDrivers, getAllTeams } from '../../Redux/actions';
 import { validateForm } from '../validate';
@@ -35,8 +35,32 @@ const FormPage = () => {
 	});
 
 	const [selectedTeams, setSelectedTeams] = useState({});
-
 	const [formErrors, setFormErrors] = useState({});
+
+	const handleValidation = () => {
+		const errors = validateForm(formData);
+		setFormErrors(errors);
+	};
+
+	const handleTeams = (team) => {
+		setSelectedTeams((prevTeams) => {
+			const updatedTeams = { ...prevTeams };
+
+			if (updatedTeams[team]) {
+				delete updatedTeams[team];
+			} else {
+				updatedTeams[team] = team;
+			}
+
+			const formattedTeams = Object.values(updatedTeams).join(',');
+
+			if (formattedTeams.length > 255) {
+				alert('Seleccionaste muchas escuderías');
+			}
+
+			return updatedTeams;
+		});
+	};
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -50,34 +74,40 @@ const FormPage = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const errors = validateForm(formData);
-		setFormErrors(errors);
+		handleValidation();
 
-		const formattedTeams = Object.values(selectedTeams).join(',');
-
-		if (formattedTeams.length >= 255) {
-			return Alert('Seleccionastes muchas escuderias');
-		}
-
-		if (Object.keys(errors).length === 0) {
-			try {
-				await axios.post(`${API_ROUTE}/drivers`, {
-					name: formData.name,
-					surname: formData.surname,
-					description: formData.description,
-					nationality: formData.nationality,
-					image: formData.image,
-					date: formData.date,
-					team: formattedTeams,
-				});
-				dispatch(getAllDrivers());
-				alert('Driver creado correctamente');
-				navigate(-1);
-			} catch {
-				alert('Hubo un error intenta nuevamente');
-			}
+		try {
+			await axios.post(`${API_ROUTE}/drivers`, {
+				name: formData.name,
+				surname: formData.surname,
+				description: formData.description,
+				nationality: formData.nationality,
+				image: formData.image,
+				date: formData.date,
+				team: formData.team,
+			});
+			dispatch(getAllDrivers());
+			alert('Driver creado correctamente');
+			navigate(-1);
+		} catch {
+			alert('Hubo un error intenta nuevamente');
 		}
 	};
+
+	useEffect(() => {
+		handleValidation();
+	}, [formData]);
+
+	useEffect(() => {
+		const formattedTeams = Object.values(selectedTeams).join(',');
+
+		handleChange({
+			target: {
+				value: formattedTeams,
+				name: 'team',
+			},
+		});
+	}, [selectedTeams]);
 
 	return (
 		<div className={Style.div}>
@@ -95,7 +125,11 @@ const FormPage = () => {
 							maxLength={255}
 						/>
 					</label>
-					<br />
+					{formErrors.name ? (
+						<p className={Style.p}>{formErrors.name}</p>
+					) : (
+						<br />
+					)}
 					<label className={Style.label}>
 						Apellido:
 						<input
@@ -107,7 +141,11 @@ const FormPage = () => {
 							maxLength={255}
 						/>
 					</label>
-					<br />
+					{formErrors.surname ? (
+						<p className={Style.p}>{formErrors.surname}</p>
+					) : (
+						<br />
+					)}
 					<label className={Style.label}>
 						Nacionalidad:
 						<input
@@ -119,7 +157,11 @@ const FormPage = () => {
 							maxLength={255}
 						/>
 					</label>
-					<br />
+					{formErrors.nationality ? (
+						<p className={Style.p}>{formErrors.nationality}</p>
+					) : (
+						<br />
+					)}
 					<label className={Style.label}>
 						Imagen:
 						<input
@@ -131,7 +173,12 @@ const FormPage = () => {
 							maxLength={255}
 						/>
 					</label>
-					<br />
+					{formErrors.image ? (
+						<p className={Style.p}>{formErrors.image}</p>
+					) : (
+						<br />
+					)}
+
 					<label className={Style.label}>
 						Fecha de Nacimiento:
 						<input
@@ -142,7 +189,12 @@ const FormPage = () => {
 							onChange={handleChange}
 						/>
 					</label>
-					<br />
+					{formErrors.date ? (
+						<p className={Style.p}>{formErrors.date}</p>
+					) : (
+						<br />
+					)}
+
 					<label className={Style.label}>
 						Descripción:
 						<textarea
@@ -158,32 +210,22 @@ const FormPage = () => {
 					<p className={Style.pEscuderias}>Escuderías:</p>
 					<div className={Style.divEscuderias}>
 						{teams.map((team) => (
-							<label className={Style.labelEscuderias}>
+							<label className={Style.labelEscuderias} key={team}>
 								{team}
 								<input
 									className={Style.checkedTeam}
 									type="radio"
-									onChange={() => {
-										setSelectedTeams((prev) => ({
-											...prev,
-											[team]: selectedTeams[team] ? undefined : team,
-										}));
-									}}
-									checked={selectedTeams[team]}
+									onChange={() => handleTeams(team)}
+									checked={selectedTeams[team] ? true : false}
 								/>
 							</label>
 						))}
 					</div>
-					{formErrors.name && <p className={Style.p}>{formErrors.name}</p>}
-					{formErrors.surname && (
-						<p className={Style.p}>{formErrors.surname}</p>
+					{formErrors.team && Object.keys(selectedTeams).length === 0 ? (
+						<p className={Style.p}>{formErrors.team}</p>
+					) : (
+						<br />
 					)}
-					{formErrors.nationality && (
-						<p className={Style.p}>{formErrors.nationality}</p>
-					)}
-					{formErrors.image && <p className={Style.p}>{formErrors.image}</p>}
-					{formErrors.date && <p className={Style.p}>{formErrors.date}</p>}
-					{formErrors.team && <p className={Style.p}>{formErrors.team}</p>}
 
 					<button className={Style.button} type="submit">
 						Crear conductor
